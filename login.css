@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #ff6b6b;
+    --text-color: #ffffff;
+    --accent-color: #4ecdc4;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: var(--text-color);
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    font-family: 'Saira Stencil One', cursive;
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    color: var(--text-color);
+    border: none;
+    border-bottom: 1px solid var(--text-color);
+    outline: none;
+    background: transparent;
+    transition: 0.3s;
+}
+
+label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 1rem;
+    color: var(--text-color);
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -20px;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--accent-color);
+}
+
+p {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rayi Game Vault</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <img src="images\Logo RGV.png" alt="Logo" />
+        <a href="index.html" style="position: absolute; left: 70px; top: 50%; transform: translateY(-50%); font-size: 24px; color: white;">Rayi Gaming Vault</a>
+        <div class="dropdown" style="position: relative; left: 0px;"> <!-- Menggunakan position relative untuk menggeser kontainer -->
+            <a href="#" id="loginLink" onclick="toggleDropdown()" style="display: inline-block; text-align: center; line-height: 0px;">Login &#9662</a>
+            <div class="dropdown-content" id="dropdownContent">
+                <button onclick="toggleLoginModal()">Masuk</button>
+                <button onclick="toggleRegisterModal()">Daftar</button> <!-- Menambahkan tombol daftar di sini -->
+            </div>
+        </div>
+        <a href="index.html" style="margin-right: 230px; color: white;">Beranda</a>
+        <a href="#" onclick="openCekPesanan()" style="margin-right: 110px; color: white;">Cek Pesanan</a>
+    </div>
+
+    <!-- Banner Section -->
+    <div class="banner">
+        <img src="images\Banner.png" alt="Banner" width="800px" height="300px" />
+    </div>
+
+    <!-- Search Bar Section -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Mau topup games apa?" oninput="showSuggestions()" />
+        <input type="submit" value="Cari" onclick="searchGames()" />
+        <div id="suggestions"></div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <a href="javascript:void(0);" class="active" onclick="showSection('games')">Games</a>
+    </div>
+
+    <div class="game-grid" id="games">
+        <div class="game-item">
+            <a href="hok.html">
+                <img src="https://play-lh.googleusercontent.com/U7QqwbqJ4c5R2a5qM0_tA7PnSSdQzIdLF2ZuOnrM9A-MCk_dcRY59S1flriKpcbacp10" alt="Game 1" />
+                <p class="game-title">HOK: Honor of Kings</p>
+            </a>
+        </div>
+        <div class="game-item">
+            <a href="ml.html">
+                <img src="https://akmweb.youngjoygame.com/web/gms/image/c6c7a1fff685a10e9cc80829c62199f9.png" alt="Game 2" />
+                <p class="game-title">Mobile Legends</p>
+            </a>
+        </div>
+        <div class="game-item">
+            <a href="pubg.html">
+                <img src="https://play-lh.googleusercontent.com/3ohs9NzwVBY1Gvzo9xxayHenfpOkLWZ78DAfTu1YZNq1t1QCszDjy6OxjaUW-VRIUoE" alt="Game 4" />
+                <p class="game-title">PUBG Mobile</p>
+            </a>
+        </div>   
+    </div>
+
+
+    <!-- Cek Pesanan Modal -->
+    <div id="cekPesananModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCekPesanan()">&times;</span>
+            <h2>Cek Pesanan</h2>
+            <input type="text" id="transactionNumber" placeholder="Masukkan nomor transaksi">
+            <button onclick="checkTransaction()">Cek Status</button>
+            <div id="transactionStatus"></div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleLoginModal()">&times;</span>
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleRegisterModal()">&times;</span>
+            <h2>Daftar</h2>
+            <input type="text" id="registerUsername" placeholder="Username">
+            <input type="password" id="registerPassword" placeholder="Password">
+            <button onclick="register()">Daftar</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer style="background-color: #e00047; padding: 20px; color: white; text-align: center; margin-top: 50px;">
+        <div class="footer-content" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <div style="flex: 1; padding: 10px;">
+                <h4>PETA SITUS</h4>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li><a href="index.html" style="color: white; text-decoration: none;">Beranda</a></li>
+                    <li><a href="#" onclick="openCekPesanan()" style="color: white; text-decoration: none;">Cek Pesanan</a></li>
+                </ul>
+            </div>
+            <div style="flex: 1; padding: 10px;">
+                <h4>TOP UP LAINNYA</h4>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li><a href="ml.html" style="color: white; text-decoration: none;">Mobile Legends</a></li>
+                </ul>
+            </div>
+            <div style="flex: 1; padding: 10px;">
+                <h4>SOSIAL MEDIA</h4>
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <a href="#"><img src="https://cdn4.iconfinder.com/data/icons/social-media-flat-7/64/Social-media_Tiktok-512.png" alt="TikTok" style="width: 30px;"></a>
+                    <a href="https://www.instagram.com/rayigaming.vault/profilecard/?igsh=aHpwcG1qOXNvODZ3"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram" style="width: 30px;"></a>
+                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" style="width: 30px;"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/256/1384/1384060.png" alt="YouTube" style="width: 30px;"></a>
+                </div>
+            </div>
+        </div>
+       
+    </footer>
+
+    <!-- Tambahkan ikon customer support di sini -->
+    <a href="https://wa.me/6281336758897" id="supportButton" target="_blank">
+        <img src="images/CS.png" alt="Customer Support" style="width: 50px; border-radius: 20%; position: fixed; bottom: 20px; right: 20px;"/>
+    </a>
+
+</body>
+<script>
+   const games = [
+    { name: 'HOK: Honor of Kings', url: 'hok.html' },
+    { name: 'Mobile Legends', url: 'ml.html' },
+    { name: 'PUBG Mobile', url: 'pubg.html' }
+];
+
+function showSuggestions() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const suggestionsDiv = document.getElementById('suggestions');
+    suggestionsDiv.innerHTML = '';
+
+    if (input.length > 0) {
+        const matchingGames = games.filter(game => 
+            game.name.toLowerCase().includes(input)
+        );
+
+        matchingGames.forEach(game => {
+            const div = document.createElement('div');
+            div.textContent = game.name;
+            div.onclick = function() {
+                window.location.href = game.url; // Redirect to game page
+            };
+            suggestionsDiv.appendChild(div);
+        });
+    }
+}
+
+function searchGames() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const matchedGame = games.find(game => game.name.toLowerCase().includes(searchInput));
+    
+    if (matchedGame) {
+        window.location.href = matchedGame.url; // Redirect to matched game page
+    } else {
+        alert('Game tidak ditemukan');
+    }
+}
+
+// Menutup saran saat mengklik di luar search bar
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-bar')) {
+        document.getElementById('suggestions').innerHTML = '';
+    }
+});
+
+function toggleLoginModal() {
+    const modal = document.getElementById('loginModal');
+    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+}
+
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    // Here you would typically make an API call to verify credentials
+    // For this example, we'll just check if both fields are non-empty
+    if (username && password) {
+        localStorage.setItem('username', username);
+        checkLoginStatus();
+        toggleLoginModal();
+    } else {
+        alert('Please enter both username and password');
+    }
+}
+
+function checkLoginStatus() {
+    // Dalam contoh ini, kita akan menggunakan localStorage
+    // Dalam implementasi nyata, Anda mungkin ingin menggunakan cookies atau session
+    const username = localStorage.getItem('username');
+    const loginLink = document.getElementById('loginLink');
+
+    if (username) {
+        // Jika user sudah login
+        loginLink.textContent = username;
+        loginLink.onclick = logout;
+    } else {
+        // Jika user belum login
+        loginLink.textContent = 'Login';
+        loginLink.onclick = toggleLoginModal;
+    }
+}
+
+
+
+function logout() {
+    localStorage.removeItem('username');
+    checkLoginStatus();
+}
+
+function openCekPesanan() {
+        document.getElementById('cekPesananModal').style.display = 'block';
+    }
+
+    function closeCekPesanan() {
+        document.getElementById('cekPesananModal').style.display = 'none';
+    }
+
+    function checkTransaction() {
+        const transactionNumber = document.getElementById('transactionNumber').value;
+        const statusElement = document.getElementById('transactionStatus');
+
+        // This is a mock function. In a real application, you would make an API call to check the transaction status.
+        if (transactionNumber) {
+            // Simulating an API call with a random result
+            const isSuccess = Math.random() < 0.5;
+            if (isSuccess) {
+                statusElement.innerHTML = `<p style="color: green;">Transaksi ${transactionNumber} berhasil!</p>`;
+            } else {
+                statusElement.innerHTML = `<p style="color: red;">Transaksi ${transactionNumber} gagal atau tidak ditemukan.</p>`;
+            }
+        } else {
+            statusElement.innerHTML = '<p style="color: orange;">Silakan masukkan nomor transaksi.</p>';
+        }
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('loginModal')) {
+            toggleLoginModal();
+        }
+        if (event.target == document.getElementById('cekPesananModal')) {
+            closeCekPesanan();
+        }
+    }
+
+    function toggleDropdown() {
+        const dropdownContent = document.getElementById('dropdownContent');
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Menutup dropdown saat mengklik di luar
+    window.onclick = function(event) {
+        if (!event.target.matches('#loginLink')) {
+            const dropdowns = document.getElementsByClassName('dropdown-content');
+            for (let i = 0; i < dropdowns.length; i++) {
+                const openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'block') {
+                    openDropdown.style.display = 'none';
+                }
+            }
+        }
+    }
+
+    function toggleRegisterModal() {
+        const modal = document.getElementById('registerModal');
+        modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function register() {
+        const username = document.getElementById('registerUsername').value;
+        const password = document.getElementById('registerPassword').value;
+
+        // Logika pendaftaran bisa ditambahkan di sini
+        if (username && password) {
+            alert('Pendaftaran berhasil!'); // Ganti dengan logika pendaftaran yang sesuai
+            toggleRegisterModal();
+        } else {
+            alert('Silakan masukkan username dan password');
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Pesanan - Rayi Game Vault</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <img src="images\Logo RGV.png" alt="Logo" />
+        <a href="index.html" style="position: absolute; left: 70px; top: 50%; transform: translateY(-50%); font-size: 24px; color: white;">Rayi Gaming Vault</a>
+        <a href="login.html" id="loginLink" onclick="if(this.textContent !== 'Login') { logout(); return false; }">Login</a>
+        <a href="Untitled-1.html" style="margin-right: 200px; color: white;">Beranda</a>
+        <a href="#" onclick="openCekPesanan()" style="margin-right: 70px; color: white;">Cek Pesanan</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" style="padding: 20px; text-align: center;">
+        <h1>Cek Status Pesanan</h1>
+        <div class="search-bar" style="max-width: 500px; margin: 20px auto;">
+            <input type="text" id="nomorTransaksi" placeholder="Masukkan Nomor Transaksi" style="width: 70%;" />
+            <input type="submit" value="Cek" onclick="cekPesanan()" style="width: 25%;" />
+        </div>
+        <div id="hasilPencarian" style="margin-top: 20px;"></div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer style="background-color: #e00047; padding: 20px; color: white; text-align: center; margin-top: 50px;">
+        <div class="footer-content" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <div style="flex: 1; padding: 10px;">
+                <h4>PETA SITUS</h4>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li><a href="Untitled-1.html" style="color: white; text-decoration: none;">Beranda</a></li>
+                    <li><a href="Cek Pesanan.html" style="color: white; text-decoration: none;">Cek Pesanan</a></li>
+                </ul>
+            </div>
+            <div style="flex: 1; padding: 10px;">
+                <h4>TOP UP LAINNYA</h4>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li><a href="#" style="color: white; text-decoration: none;">Mobile Legends</a></li>
+                </ul>
+            </div>
+            <div style="flex: 1; padding: 10px;">
+                <h4>SOSIAL MEDIA</h4>
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <a href="#"><img src="https://cdn4.iconfinder.com/data/icons/social-media-flat-7/64/Social-media_Tiktok-512.png" alt="TikTok" style="width: 30px;"></a>
+                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram" style="width: 30px;"></a>
+                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" style="width: 30px;"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/256/1384/1384060.png" alt="YouTube" style="width: 30px;"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script>
+function cekPesanan() {
+    const nomorTransaksi = document.getElementById('nomorTransaksi').value;
+    const hasilPencarian = document.getElementById('hasilPencarian');
+    
+    // Simulasi pengecekan pesanan
+    if (nomorTransaksi) {
+        // Di sini Anda bisa menambahkan logika untuk mengecek pesanan yang sebenarnya
+        hasilPencarian.innerHTML = `<p>Status pesanan untuk nomor transaksi ${nomorTransaksi}: <strong>Sedang diproses</strong></p>`;
+    } else {
+        hasilPencarian.innerHTML = '<p>Silakan masukkan nomor transaksi.</p>';
+    }
+}
+</script>
+</html>

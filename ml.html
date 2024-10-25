@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Legends Top-up</title>
+    <link rel="stylesheet" href="ml.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <img src="images/Logo RGV.png" alt="Logo" />
+        <a href="index.html" style="position: absolute; left: 70px; top: 50%; transform: translateY(-50%); font-size: 24px; color: white;">Rayi Gaming Vault</a>
+        <a href="index.html" style="margin-right: 200px; color: white;">Beranda</a>
+        <a href="#" onclick="openCekPesanan()" style="margin-right: 70px; color: white;">Cek Pesanan</a>
+        <a href="#" id="loginLink" onclick="toggleLoginModal()">Login</a>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleLoginModal()">&times;</span>
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+    <!-- Banner Section -->
+    <div class="banner">
+        <img src="images\Banner ML.png" alt="Banner" width="1100px" height="400px" />
+    </div>
+
+    <div class="container">
+        <div class="tutorial">
+            <h2>Tutorial Cara Top-up</h2>
+            <p>1. Masukkan User ID dan Zone ID Anda, Contoh : 667632423 ( 5246 )</p>
+            <p>2. Pilih Nominal Diamonds yang kamu inginkan</p>
+            <p>3. Selesaikan pembayaran</p>
+            <p>4. Diamonds akan ditambahkan ke akun Mobile Legends kamu</p>
+            <p>INFORMASI PENTING!</p>
+            <p>1. Pastikan Level Akun Mobile Legends kamu sudah mencapai level 5</p>
+            <p>2. Kamu tidak bisa Top Up Weekly Diamond jika sudah 0/10 (70 Hari) kalian bisa check di bagian weekly diamond masing masing akun</p>
+            <p>Contoh : Jika masih 3/10 berarti kalian masih bisa top up 3x lagi</p>
+            <p>3. TOP UP ORIGINAL SERVER :</p>
+            <p>Hanya bisa untuk top up original server, tidak bisa untuk advance server</p>
+        </div>
+        <div class="content">
+            <div class="lengkapi-data" style="margin-bottom: 30px;">
+                <h2>Lengkapi Data</h2>
+                <form>
+                    <div style="margin-bottom: 15px;">
+                        <label for="userId" style="display: block; margin-bottom: 5px;">Masukkan User ID</label>
+                        <input type="text" id="userId" name="userId" placeholder="Masukkan User ID" style="width: 95%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="zoneId" style="display: block; margin-bottom: 5px;">Masukkan Zone ID</label>
+                        <input type="text" id="zoneId" name="zoneId" placeholder="Masukkan Zone ID" style="width: 95%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                    </div>
+                    <p style="font-size: 14px; color: #aaa;">
+                        Untuk mengetahui User ID Anda, silahkan klik menu profile di bagian kiri atas pada menu utama game. User ID akan terlihat di bagian bawah Nama karakter game Anda. Silahkan masukan User ID dan Server ID Anda untuk menyelesaikan transaksi. Contoh: 12345678(1234), maka ID = 12345678 dan Server = 1234
+                    </p>
+                </form>
+            </div>
+            <div class="pilih-nominal-layanan">
+                <h2>Pilih Nominal Layanan</h2>
+                <div class="topup-options">
+                    <form id="topupForm" onsubmit="handlePayment(event)">
+                        <input type="hidden" name="topup" id="selectedTopup" value="">
+                        <div class="topup-option" onclick="selectTopup('5 Diamonds')">
+                            <h2>5 Diamonds</h2>
+                            <p>RP 5,000</p>
+                            <button type="button">Top-up</button>
+                        </div>
+                        <div class="topup-option" onclick="selectTopup('10 Diamonds')">
+                            <h2>10 Diamonds</h2>
+                            <p>RP 10,000</p>
+                            <button type="button">Top-up</button>
+                        </div>
+                        <div class="topup-option" onclick="selectTopup('50 Diamonds')">
+                            <h2>50 Diamonds</h2>
+                            <p>RP 50,000</p>
+                            <button type="button">Top-up</button>
+                        </div>
+                        <div class="topup-option" onclick="selectTopup('100 Diamonds')">
+                            <h2>100 Diamonds</h2>
+                            <p>RP 100,000</p>
+                            <button type="button">Top-up</button>
+                        </div>
+                        <div class="topup-option" onclick="selectTopup('500 Diamonds')">
+                            <h2>500 Diamonds</h2>
+                            <p>RP 500,000</p>
+                            <button type="button">Top-up</button>
+                        </div>
+                        <div class="topup-option" role="button" tabindex="0" onclick="selectTopup('1000 Diamonds')">
+                            <h2>1000 Diamonds</h2>
+                            <p>RP 1,000,000</p>
+                            <button type="button">Top-up</button>
+                        </div>
+                        <!-- Tambahkan opsi top-up lainnya... -->
+
+                        <div class="payment-methods" id="selectedTopupDisplay" style="display: none; margin-bottom: 20px;">
+                            <h3>Top-up yang Dipilih: <span id="topupName"></span></h3>
+                        </div>
+                        <div class="payment-methods" id="paymentMethods" style="display: none; margin-bottom: 20px;">
+                            <h3>Pilih Metode Pembayaran</h3>
+                            <div class="payment-option" onclick="selectPaymentMethod(this)" style="background-color: #23272a;"> <!-- Tambahkan style ini -->
+                                <h4>E-Wallet</h4>
+                                <p>OVO, DANA, LinkAja, gopay</p>
+                                <span class="checkmark" style="display: none;">✔</span> <!-- Tanda centang -->
+                            </div>
+                            <div class="payment-option" onclick="selectPaymentMethod(this)" style="background-color: #23272a;"> <!-- Tambahkan style ini -->
+                                <h4>Scan QRIS</h4>
+                                <p>QR Code Standar Pembayaran Nasional</p>
+                                <span class="checkmark">✔</span> <!-- Tanda centang -->
+                            </div>
+                        <!-- Tambahkan box konfirmasi pesanan di bawah box pilih metode pembayaran -->
+<div class="konfirmasi-pesanan" style="margin-top: 20px; background-color: #23272a; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <h2>Konfirmasi Pesanan</h2>
+    <label for="whatsappNumber" style="display: block; margin-bottom: 5px;">Masukkan No. Whatsapp</label>
+    <input type="text" id="whatsappNumber" placeholder="Masukkan No. Whatsapp" style="width: 95%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    <p style="font-size: 14px; color: #aaa;">
+        * Nomor Whatsapp ini digunakan untuk menghubungi Kamu, apabila terjadi kendala seperti Salah Nickname, Salah UID, dll. Jika keberatan, boleh isi nomor HP Random. Dengan membeli otomatis saya menyetujui Ketenangan Layanan.
+    </p>
+    <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div> <!-- Ganti dengan site key reCAPTCHA Anda -->
+    <button style="margin-top: 10px; background-color: #e00047; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">Beli Sekarang</button>
+</div>    
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Footer Section -->
+<footer style="background-color: #e00047; padding: 20px; color: white; text-align: center; margin-top: 50px;">
+    <div class="footer-content" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <div style="flex: 1; padding: 10px;">
+            <h4>PETA SITUS</h4>
+            <ul style="list-style-type: none; padding: 0;">
+                <li><a href="index.html" style="color: white; text-decoration: none;">Beranda</a></li>
+                <li><a href="#" onclick="openCekPesanan()" style="color: white; text-decoration: none;">Cek Pesanan</a></li>
+            </ul>
+        </div>
+        <div style="flex: 1; padding: 10px;">
+            <h4>TOP UP LAINNYA</h4>
+            <ul style="list-style-type: none; padding: 0;">
+                <li><a href="ml.html" style="color: white; text-decoration: none;">Mobile Legends</a></li>
+            </ul>
+        </div>
+        <div style="flex: 1; padding: 10px;">
+            <h4>SOSIAL MEDIA</h4>
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <a href="#"><img src="https://cdn4.iconfinder.com/data/icons/social-media-flat-7/64/Social-media_Tiktok-512.png" alt="TikTok" style="width: 30px;"></a>
+                <a href="https://www.instagram.com/rayigaming.vault/profilecard/?igsh=aHpwcG1qOXNvODZ3"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram" style="width: 30px;"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" style="width: 30px;"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/256/1384/1384060.png" alt="YouTube" style="width: 30px;"></a>
+            </div>
+        </div>
+    </div>
+   
+</footer>
+<button id="backButton">Back to Home</button>
+<!-- Tambahkan ikon customer support di sini -->
+<a href="https://wa.me/6281336758897" id="supportButton" target="_blank">
+    <img src="images\CS.png" alt="Customer Support" style="width: 50px; border-radius: 20%; position: fixed; bottom: 20px; right: 20px;"/>
+</a>
+<div id="paymentPopup" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="togglePaymentPopup()">&times;</span>
+        <h2>Konfirmasi Pembayaran</h2>
+        <p>Total Harga: <span id="totalPrice"></span></p>
+        <img src="images\QR.jpeg" alt="QRIS" style="width: 100%; max-width: 300px;">
+        <p>Silakan lakukan pembayaran menggunakan QRIS di atas.</p>
+        <button onclick="closePaymentPopup()" style="margin-top: 10px; background-color: #e00047; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">Done</button>
+    </div>
+</div>
+</body>
+<script src="ml.js"></script>
+<script>
+    // Login related functions
+    function toggleLoginModal() {
+        const modal = document.getElementById('loginModal');
+        modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        if (username && password) {
+            localStorage.setItem('username', username);
+            checkLoginStatus();
+            toggleLoginModal();
+        } else {
+            alert('Please enter both username and password');
+        }
+    }
+
+    function checkLoginStatus() {
+        const username = localStorage.getItem('username');
+        const loginLink = document.getElementById('loginLink');
+
+        if (username) {
+            loginLink.textContent = username;
+            loginLink.onclick = logout;
+        } else {
+            loginLink.textContent = 'Login';
+            loginLink.onclick = toggleLoginModal;
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('username');
+        checkLoginStatus();
+    }
+
+    // Check login status when page loads
+    window.onload = function() {
+        checkLoginStatus();
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('loginModal')) {
+            toggleLoginModal();
+        }
+    }
+
+    function selectPaymentMethod(option) {
+        // Menghapus tanda centang dari semua opsi
+        const options = document.querySelectorAll('.payment-option');
+        options.forEach(opt => {
+            opt.querySelector('.checkmark').style.display = 'none';
+        });
+
+        // Menampilkan tanda centang pada opsi yang dipilih
+        option.querySelector('.checkmark').style.display = 'inline';
+    }
+
+    // Tambahkan fungsi untuk menutup pop-up dan mereset pemilihan top-up
+    function closePaymentPopup() {
+        togglePaymentPopup(); // Menutup pop-up
+        document.getElementById('selectedTopup').value = ''; // Mereset pemilihan top-up
+        document.getElementById('topupName').textContent = ''; // Menghapus nama top-up yang dipilih
+        document.getElementById('paymentMethods').style.display = 'none'; // Menyembunyikan metode pembayaran
+        document.getElementById('selectedTopupDisplay').style.display = 'none'; // Menyembunyikan box top-up yang dipilih
+    }
+</script>
+</html>
